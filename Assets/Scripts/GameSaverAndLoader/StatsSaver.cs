@@ -21,7 +21,7 @@ public class StatsSaver// : Singlton<StatsSaver>
         get 
         {
             if (PlayerPrefs.HasKey("Stage"))
-                return AppleCount = PlayerPrefs.GetInt("Stage");
+                return MaxStage = PlayerPrefs.GetInt("Stage");
             else
                 return 1;
         }
@@ -32,7 +32,7 @@ public class StatsSaver// : Singlton<StatsSaver>
         get
         {
             if (PlayerPrefs.HasKey("Score"))
-                return AppleCount = PlayerPrefs.GetInt("Score");
+                return MaxScore = PlayerPrefs.GetInt("Score");
             else
                 return 0;
         }
@@ -44,7 +44,7 @@ public class StatsSaver// : Singlton<StatsSaver>
         get
         {
             if (PlayerPrefs.HasKey("CurrentStage"))
-                return AppleCount = PlayerPrefs.GetInt("CurrentStage");
+                return CurrentStage = PlayerPrefs.GetInt("CurrentStage");
             else
                 return 1;
         }
@@ -55,21 +55,12 @@ public class StatsSaver// : Singlton<StatsSaver>
         get
         {
             if (PlayerPrefs.HasKey("CurrentScore"))
-                return AppleCount = PlayerPrefs.GetInt("CurrentScore");
+                return CurrentScore = PlayerPrefs.GetInt("CurrentScore");
             else
                 return 0;
         }
         private set { }
     }
-
-    private void Awake()
-    {
-        if(PlayerPrefs.HasKey("Apples"))
-            AppleCount = PlayerPrefs.GetInt("Apples");
-        if (PlayerPrefs.HasKey("Score"))
-            AppleCount = PlayerPrefs.GetInt("Score");
-        
-    }    
 
     public void SaveAppleAmount(int appleCount)
     {
