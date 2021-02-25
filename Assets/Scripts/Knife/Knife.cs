@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using Singlton;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Knife : MonoBehaviour
 {
     [SerializeField] private KnifeMover _knifeMover;
-    [SerializeField] private bool _isInLog = false;
 
     private BoxCollider2D _collider;
 
@@ -26,7 +24,6 @@ public class Knife : MonoBehaviour
         if(collision.TryGetComponent(out Log log))
         {
             RanIntoLog?.Invoke(this);
-            _isInLog = true;
             _knifeMover.StopMovement();
             gameObject.transform.parent = log.transform;
             _knifeMover.enabled = false;
@@ -40,13 +37,10 @@ public class Knife : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out Knife knife))
         {
-            if(_isInLog == false)
-            {
-                RanIntoKnife?.Invoke(this);
-                _knifeMover.OnOtherKnifeEneter();
-                _collider.enabled = false;
-                _knifeMover.enabled = false;
-            }
+            RanIntoKnife?.Invoke(this);
+            _knifeMover.OnOtherKnifeEneter();
+            _collider.enabled = false;
+            _knifeMover.enabled = false;
         }
     }
 

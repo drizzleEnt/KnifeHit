@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnifeParticalsActivator : MonoBehaviour
+public class WoodParticalsActivator : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _woodParticls;
-    [SerializeField] private Knife _knife;
+    [SerializeField] private KnifeSpawner _spawner;
 
     private void OnEnable()
     {
-        _knife.RanIntoLog += PlayWoodParticals;
+        _spawner.KnifeInLog += PlayWoodParticals;
     }
 
     private void OnDisable()
     {
-        _knife.RanIntoLog -= PlayWoodParticals;
+        _spawner.KnifeInLog -= PlayWoodParticals;
     }
 
-    private void PlayWoodParticals(Knife knife)
+    private void PlayWoodParticals()
     {
         _woodParticls.Play();
     }
